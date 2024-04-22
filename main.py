@@ -26,12 +26,10 @@ def adding_with_zero(staff_list, slice1, slice2, part1, part2) -> list:
 
     return lst
 
-#Функци "adding_without_zero" нуждается
-#в дополнительном тестировании
 def adding_without_zero(staff_list, number) -> list:
     lst = []
     for s in staff_list:
-        for i in range(number):
+        for i in range(int(number / len(staff_list))):
             lst.append(s)
 
     return lst
@@ -41,6 +39,6 @@ if number % staff == 0:
 else:
     lst = adding_with_zero(staff_list, slice1, slice2, part1, part2)
 
-with open('staff_lines', 'w') as f:
+with open('staff_lines.txt', 'w') as f:
     for i in lst:
         f.write(f"{i}\n")
