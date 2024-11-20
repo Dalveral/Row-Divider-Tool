@@ -49,5 +49,5 @@ Sidorov Sergey Sergeevich
 1. Download the repository.
 2. Run the program using the command 
 ```bash
-python row_divider_tool.py`
+python row_divider_tool.py
 ```
