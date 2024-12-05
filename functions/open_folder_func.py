@@ -18,7 +18,7 @@ def ask_folder(folder_path: str) -> bool:
     return False
 
 
-def open_folder(folder_path) -> None:
+def open_folder(folder_path: str) -> None:
     user_platform = platform.system()
     platforms = {
         'Linux': '',
