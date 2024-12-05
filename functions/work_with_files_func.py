@@ -21,12 +21,17 @@ def write_staff_lines(result: list) -> None:
 
 def check_staff_file() -> bool:
     file = os.path.isfile('staff.txt')
-    size = os.path.getsize('staff.txt')
 
-    if not file or size == 0:
+    if not file:
         with open('staff.txt', 'w') as file:
             file.write('')
 
+        return False
+
+    size = os.path.getsize('staff.txt')
+    print(size)
+
+    if size < 8:
         return False
 
     return True

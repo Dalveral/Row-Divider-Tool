@@ -2,6 +2,7 @@ import os
 
 from functions.calculation_func import with_zero, without_zero, base_calculation
 from functions.work_with_files_func import get_staff_list, write_staff_lines, check_staff_file
+from functions.open_folder_func import ask_folder
 
 ZERO = 0
 ONE = 1
@@ -10,6 +11,12 @@ current_directory = os.getcwd()
 
 
 def main() -> None:
+
+    ask = ask_folder(current_directory)
+
+    if not ask:
+        return
+
     if not check_staff_file():
         print('The file "staff.txt" seems to be empty.')
         return
