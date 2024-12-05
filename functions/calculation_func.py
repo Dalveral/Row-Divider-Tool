@@ -1,5 +1,6 @@
 def with_zero(staff_list: list, slice1: int, slice2: int, part1: int, part2) -> list:
     lst = []
+
     for s in staff_list[:part2]:
         for i in range(int(slice2 / part2)):
             lst.append(s)
