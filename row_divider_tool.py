@@ -1,8 +1,12 @@
+import os
+
 from functions.calculation_func import with_zero, without_zero, base_calculation
 from functions.work_with_files_func import get_staff_list, write_staff_lines, check_staff_file
 
 ZERO = 0
 ONE = 1
+
+current_directory = os.getcwd()
 
 
 def main() -> None:

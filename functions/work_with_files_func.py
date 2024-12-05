@@ -2,9 +2,18 @@ import os
 
 
 def get_staff_list() -> list:
+    lines = []
     with open('staff.txt', 'r') as file:
-        lines = [line.strip() for line in file if line.strip()]
+        for line, i in zip(file, lines):
+            print(line)
+            print(i)
+            if len(line.strip()) < 4:
+                continue
+            if line.strip() == i:
+                continue
 
+            lines.append(line.strip())
+    print(lines)
     return lines
 
 
