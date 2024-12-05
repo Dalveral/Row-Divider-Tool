@@ -11,7 +11,7 @@ current_directory = os.getcwd()
 
 def main() -> None:
     if not check_staff_file():
-        print('Error find file, please create "staff.txt" and try again.')
+        print('The file "staff.txt" seems to be empty.')
         return
 
     try:
@@ -39,7 +39,7 @@ def main() -> None:
         result = with_zero(staff_list, slice1, slice2, part1, part2)
 
     write_staff_lines(result)
-    print('All done.')
+    print(f'All done. Unique staff: \n{'; '.join(staff_list)}')
 
 
 if __name__ == '__main__':

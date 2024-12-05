@@ -4,16 +4,12 @@ import os
 def get_staff_list() -> list:
     lines = []
     with open('staff.txt', 'r') as file:
-        for line, i in zip(file, lines):
-            print(line)
-            print(i)
-            if len(line.strip()) < 4:
+        for line in file:
+            line = line.strip()
+            if len(line) < 4 or line in lines:
                 continue
-            if line.strip() == i:
-                continue
+            lines.append(line)
 
-            lines.append(line.strip())
-    print(lines)
     return lines
 
 
@@ -25,8 +21,12 @@ def write_staff_lines(result: list) -> None:
 
 def check_staff_file() -> bool:
     file = os.path.isfile('staff.txt')
+    size = os.path.getsize('staff.txt')
 
-    if file:
-        return True
+    if not file or size == 0:
+        with open('staff.txt', 'w') as file:
+            file.write('')
 
-    return False
+        return False
+
+    return True
