@@ -1,9 +1,10 @@
 import os
+from settings import STAFF_FILES, CURRENT_DIRECTORY
 
 
 def get_staff_list() -> list:
     lines = []
-    with open('staff.txt', 'r') as file:
+    with open(f'{CURRENT_DIRECTORY}/{STAFF_FILES[0]}', 'r') as file:
         for line in file:
             line = line.strip()
             if len(line) < 4 or line in lines:
@@ -14,24 +15,15 @@ def get_staff_list() -> list:
 
 
 def write_staff_lines(result: list) -> None:
-    with open('staff_lines.txt', 'w') as f:
+    with open(f'{CURRENT_DIRECTORY}/{STAFF_FILES[1]}', 'w') as f:
         for i in result:
             f.write(f"{i}\n")
 
 
-def check_staff_file() -> bool:
-    file = os.path.isfile('staff.txt')
+def check_staff_file() -> None:
+    file = os.path.isfile(f'{CURRENT_DIRECTORY}/{STAFF_FILES[0]}')
 
     if not file:
-        with open('staff.txt', 'w') as file:
+        with open(f'{CURRENT_DIRECTORY}/{STAFF_FILES[0]}', 'w') as file:
             file.write('')
 
-        return False
-
-    size = os.path.getsize('staff.txt')
-    print(size)
-
-    if size < 8:
-        return False
-
-    return True

@@ -1,24 +1,9 @@
 import platform
 import subprocess
+from settings import CURRENT_DIRECTORY
 
 
-def ask_folder(folder_path: str) -> bool:
-    try:
-        folder_question = input(f"Folder app: {folder_path}. Open it? \n 1 - Yes \n 2 - No \n q - Quit\n Input: ")
-    except (ValueError, KeyboardInterrupt):
-        print('Stopp app.')
-        return False
-
-    if folder_question == "1":
-        open_folder(folder_path)
-        return True
-    if folder_question == "2":
-        return True
-
-    return False
-
-
-def open_folder(folder_path: str) -> None:
+def open_folder() -> None:
     user_platform = platform.system()
     platforms = {
         'Linux': '',
@@ -26,6 +11,6 @@ def open_folder(folder_path: str) -> None:
         'Darwin': 'open',
     }
 
-    open_command = [platforms.get(user_platform), folder_path]
+    open_command = [platforms.get(user_platform), CURRENT_DIRECTORY]
 
     subprocess.run(open_command)
