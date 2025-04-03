@@ -1,6 +1,7 @@
 from functions.calculation_func import with_zero, without_zero, base_calculation
 from functions.work_with_files_func import get_staff_list, write_staff_lines, check_staff_file
 from functions.questions_func import start_questions_func
+from functions.response_func import response
 
 
 def main() -> None:
@@ -17,8 +18,7 @@ def main() -> None:
     if number <= count_staff or count_staff == 0:
         write_staff_lines(staff_list[:number])
 
-        print(f'All done. Unique staff: \n{"; ".join(staff_list)}')
-        input('Press Enter to exit...')
+        response(staff_list)
 
         return
 
@@ -30,11 +30,13 @@ def main() -> None:
 
     write_staff_lines(result)
 
-    print(f'All done. Unique staff: \n {"; ".join(staff_list)}')
-    input('Press Enter to exit...')
+    response(staff_list)
 
     return
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('Stop')

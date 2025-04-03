@@ -1,4 +1,6 @@
 import os
+import re
+
 from settings import STAFF_FILES, CURRENT_DIRECTORY
 
 
@@ -7,11 +9,16 @@ def get_staff_list() -> list:
     with open(f'{CURRENT_DIRECTORY}/{STAFF_FILES[0]}', 'r') as file:
         for line in file:
             line = line.strip()
-            if len(line) < 4 or line in lines:
+            if len(line) < 4:
                 continue
-            lines.append(line)
+            parts = re.findall(r'[A-ZА-ЯЁ][a-zа-яё]* [A-ZА-ЯЁ][a-zа-яё]* [A-ZА-ЯЁ][a-zа-яё]*|[A-ZА-ЯЁ][a-zа-яё]*[A-ZА-ЯЁ][a-zа-яё]*[A-ZА-ЯЁ][a-zа-яё]*', line)
+            if len(parts) > 1:
+                for part in parts:
+                    lines.append(part)
+            else:
+                lines.append(line)
 
-    return lines
+    return list(dict.fromkeys(lines))
 
 
 def write_staff_lines(result: list) -> None:
