@@ -1,6 +1,7 @@
 from functions.calculation_func import with_zero, without_zero, base_calculation
 from functions.work_with_files_func import get_staff_list, write_staff_lines, check_staff_file
 from functions.questions_func import start_questions_func
+from functions.response_func import response
 
 
 def main() -> None:
@@ -15,9 +16,10 @@ def main() -> None:
     count_staff = len(staff_list)
 
     if number <= count_staff or count_staff == 0:
-
         write_staff_lines(staff_list[:number])
-        print(f'All done. Unique staff: \n{'; '.join(staff_list)}')
+
+        response(staff_list)
+
         return
 
     if number % count_staff == 0:
@@ -27,8 +29,14 @@ def main() -> None:
         result = with_zero(staff_list, slice1, slice2, part1, part2)
 
     write_staff_lines(result)
-    print(f'All done. Unique staff: \n{'; '.join(staff_list)}')
+
+    response(staff_list)
+
+    return
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('Stop')
