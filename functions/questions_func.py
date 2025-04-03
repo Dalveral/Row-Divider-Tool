@@ -1,8 +1,10 @@
+from typing import Optional
+
 from settings import GENERAL_QUESTION, QUESTION_FOR_MENU
 from functions.open_folder_func import open_folder
 
 
-def start_questions_func() -> int | None:
+def start_questions_func() -> Optional[int]:
     for q in GENERAL_QUESTION:
 
         index = GENERAL_QUESTION.index(q)
@@ -19,7 +21,7 @@ def start_questions_func() -> int | None:
             return answer_user
 
 
-def questions(question: str, menu: str) -> int | None:
+def questions(question: str, menu: str) -> Optional[int]:
     try:
         answer = int(input(f'{question} {menu}'))
     except (ValueError, KeyboardInterrupt, TypeError):
